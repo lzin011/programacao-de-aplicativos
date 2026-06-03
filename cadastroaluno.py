@@ -60,3 +60,21 @@ def listar_aluno():
 
             
 listar_aluno()
+
+
+def atualizar_aluno(alunos):
+    id_aluno = int(input("Digite o ID do aluno: "))
+
+    for aluno in alunos:
+        if aluno["id"] == id_aluno:
+            print("Aluno encontrado!")
+
+            aluno["nome"] = input(f"Novo nome ({aluno['nome']}): ")
+            aluno["telefone"] = input(f"Novo telefone ({aluno['telefone']}): ")
+
+            salvar_json(alunos)
+
+            print("Dados atualizados com sucesso!")
+            return
+
+    print("Aluno não encontrado.")
