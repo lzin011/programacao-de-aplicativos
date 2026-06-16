@@ -1,12 +1,18 @@
-import sqlite3
+def listar():
+    
+    conexao = sqlite3.connect('escola_demonstracao.db')
+    cursor = conexao.cursor()
 
-conexao = sqlite3.connect("esclo_demonstração.db")
-cursor = conexao.cursor()
-cursor.execute(''' select * from alunos ''')
-alunos = cursor.fetchall()
-if not alunos:
-    print("nenhum alunos cadastrado")
-else: 
+    cursor.execute("SELECT * FROM alunos") 
+    alunos = cursor.fetchall() 
+
+    print("=== Lista de Aluno ===")
+
     for aluno in alunos: 
-        print(f"nome = {alunos[0]}, idade = {aluno[1]}")
-conexao.close()
+        print(f"ID: {aluno[0]}")
+        print(f"Nome: {aluno[1]}")
+        print(f"Telefone: {aluno[2]}")
+        print(f"Turma: {aluno[3]}")
+        print(f"Idade: {aluno[4]}")
+        print(f"CPF: {aluno[5]}")
+        print("-" * 30)
