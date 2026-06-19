@@ -13,6 +13,9 @@ def criar():
                         idade INTEGER,
                         cpf TEXT UNIQUE NOT NULL,
                         salario REAL,
+                        cidade TEXT,
+                        endereco TEXT,
+                        estado TEXT,
                         nome_escola TEXT 
                         )''')
                          
@@ -24,10 +27,13 @@ def criar():
     cpf_professor = input("digite o cpf: ")
     salario = int(input("digite seu salario: "))
     nome_da_escola = input("qual o nome da escola: ") 
-    
+    cidade_aluno = input("digite a cidade: ") 
+    endereco_aluno = input("digite o endereço: ") 
+    estado_aluno = input("digite o estado: ") 
+
     comando_inserir = (f''' 
                     INSERT into professores (nome, telefone, materia, idade, cpf, salario, escola)
-                    VALUES('{nome_professor}','{telefone}','{materia}',{idade},'{cpf_professor}',{salario},'{nome_da_escola}')''') 
+                    VALUES('{nome_professor}','{telefone}','{materia}',{idade},'{cpf_professor}',{salario},'{nome_da_escola}','{cidade_aluno}','{endereco_aluno}','{estado_aluno}')''') 
                         
     cursor.execute(comando_inserir)
 
@@ -51,6 +57,9 @@ def listar():
         print(f"CPF: {professor[5]}")
         print(f"salario: {professor[6]}")
         print(f"escola: {professor[7]}")
+        print(f"cidade: {professor[8]}")
+        print(f"endereco: {professor[9]}")
+        print(f"estado: {professor[10]}")
         print("-" * 30)
 
 
