@@ -18,14 +18,14 @@ cursor.execute ('''CREATE TABLE IF NOT EXISTS alunos (
 nome_aluno = input("NOME: ") # pede o nome do aluno 
 telefone_aluno = input("TELEFONE: ") # pede o telefone 
 turma_aluno = input("TURMA: ") # pede a turma do aluno 
-idade_aluno = int(input("IDADE: ")) #pede a idade do aluno 
-CPF_aluno = input("CPF: ") # pede o cpf do aluno 
-cidade_aluno = input("CIDADE: ") # pede a cidade 
-endereco_aluno = input("ENDERECO: ") # pede o endereço
+idade_aluno = int(input("IDADE: "))
+CPF_aluno = input("CPF: ")  
+cidade_aluno = input("CIDADE: ")  
+endereco_aluno = input("ENDERECO: ") 
 estado_aluno = input("ESTADO: ") # pede o estado 
 
 comando_inserir = (f''' 
-                    INSERT into alunos (nome, telefone, turma, idade,cpf)
+                    INSERT into alunos (nome, telefone, turma, idade, cpf, cidade, endereco, estado)
                     VALUES('{nome_aluno}','{telefone_aluno}','{turma_aluno}',{idade_aluno},'{CPF_aluno}','{cidade_aluno}','{endereco_aluno}','{estado_aluno}')''') # monta o comando 
                         
 cursor.execute(comando_inserir) # executa o comando 
@@ -35,7 +35,7 @@ conexao.close () # fecha a conexão
 def listar():
 
     cursor.execute("SELECT * FROM alunos") 
-    professores = cursor.fetchall()
+    todos_alunos = cursor.fetchall()
 
     for aluno in alunos: 
         print(f"ID: {aluno[0]}")
@@ -73,7 +73,7 @@ def alterar():
         novo_endereco = input("qual o novo endereço: ")
         novo_estado = input("qual o novo estado: ")
 
-        comando = f'''UPDATE professores SET nome = '{novo_nome}',telefone = '{novo_telefone}',materia = '{novo_materia}',idade = {novo_idade},cpf = '{novo_cpf}',salario = '{novo_salario}',escola = '{novo_escola}','''
+        comando = f'''UPDATE alunos SET nome = '{novo_nome}',telefone = '{novo_telefone}',materia = '{novo_materia}',idade = {novo_idade},cpf = '{novo_cpf}',salario = '{novo_salario}',escola = '{novo_escola}','''
         
         conexao.commit()
         print(" Dados alterados ")
@@ -86,12 +86,12 @@ def deletar():
 
     listar()
 
-    id_professor = int(input(" Qual ID deseja deletar: " ))
+    id_alunos = int(input(" Qual ID deseja deletar: " ))
 
-    cursor.execute(f'''DELETE FROM professor WHERE Id = {id_professor}''')
+    cursor.execute(f'''DELETE FROM alunos WHERE Id = {id_alunos}''')
 
     conexao.commit()
-    print("professor deletado")
+    print("aluno deletado")
 
     conexao.close()
 
@@ -100,20 +100,20 @@ def deletar():
 def menu():
       
     while True:
-        print("\n--- TABELA PROFESSORES ---")
+        print("\n--- TABELA ALUNOS ---")
         print("\n=== SISTEMA ESCOLAR ===")  
-        print("1. Cadastrar professor") 
-        print("2. Listar professor") 
-        print("3. Atualizar professor") 
-        print("4. Excluir professor") 
+        print("1. Cadastrar alunos") 
+        print("2. Listar alunos") 
+        print("3. Atualizar alunos") 
+        print("4. Excluir alunos") 
         print("5. Sair")
             
         opcao = input("Escolha uma opção: ")
 
-        if opcao == '1': criar()
+        if opcao == '1': cadastrar()
         elif opcao == '2': listar() 
-        elif opcao == '3': alterar() 
-        elif opcao == '4': deletar() 
+        elif opcao == '3': atualizar() 
+        elif opcao == '4': excluir() 
         elif opcao == '5': break
         else: print("Opção inválida!")
 
