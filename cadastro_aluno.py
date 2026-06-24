@@ -1,123 +1,241 @@
-import sqlite3 # Importa a biblioteca
+import sqlite3 
 
-conexao = sqlite3.connect ('escola.db') # Cria uma conexão com o banco de dados chamado escola.db.
-cursor = conexao.cursor() # O cursor é responsável por executar comandos SQL no banco de dados.
-cursor.execute ('''CREATE TABLE IF NOT EXISTS alunos ( 
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    nome TEXT NOT NULL,
-                    telefone TEXT,             
-                    turma TEXT,
-                    idade INTEGER,
-                    cidade TEXT,
-                    endereco TEXT,
-                    estado TEXT,
-                    cpf TEXT UNIQUE NOT NULL 
-                    )''') # cria atabela # CPF é unico e é obrigatorio, nao pode ficar vazio. E o nome também 
+def cadastrar():
+    try:
+        conexao = sqlite3.connect ('escola.db') 
+        cursor = conexao.cursor() 
+        cursor.execute ('''CREATE TABLE IF NOT EXISTS alunos ( 
+                            id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            nome TEXT NOT NULL,
+                            telefone TEXT,             
+                            turma TEXT,
+                            idade INTEGER,
+                            cidade TEXT,
+                            endereco TEXT,
+                            estado TEXT,
+                            cpf TEXT UNIQUE NOT NULL 
+                            )''') 
 
-# recebendo os dados do usuario 
-nome_aluno = input("NOME: ") # pede o nome do aluno 
-telefone_aluno = input("TELEFONE: ") # pede o telefone 
-turma_aluno = input("TURMA: ") # pede a turma do aluno 
-idade_aluno = int(input("IDADE: "))
-CPF_aluno = input("CPF: ")  
-cidade_aluno = input("CIDADE: ")  
-endereco_aluno = input("ENDERECO: ") 
-estado_aluno = input("ESTADO: ") # pede o estado 
 
-comando_inserir = (f''' 
-                    INSERT into alunos (nome, telefone, turma, idade, cpf, cidade, endereco, estado)
-                    VALUES('{nome_aluno}','{telefone_aluno}','{turma_aluno}',{idade_aluno},'{CPF_aluno}','{cidade_aluno}','{endereco_aluno}','{estado_aluno}')''') # monta o comando 
-                        
-cursor.execute(comando_inserir) # executa o comando 
-conexao.commit() # grava definitivamente os dados no banco 
-conexao.close () # fecha a conexão 
+        nome_aluno = input("NOME: ") 
+        telefone_aluno = input("TELEFONE: ") 
+        turma_aluno = input("TURMA: ") 
+        idade_aluno = int(input("IDADE: "))
+        CPF_aluno = input("CPF: ")  
+        cidade_aluno = input("CIDADE: ")  
+        endereco_aluno = input("ENDERECO: ") 
+        estado_aluno = input("ESTADO: ") 
+
+        comando_inserir = (f''' 
+                            INSERT into alunos (nome, telefone, turma, idade, cpf, cidade, endereco, estado)
+                            VALUES('{nome_aluno}','{telefone_aluno}','{turma_aluno}','{idade_aluno}','{CPF_aluno}','{cidade_aluno}','{endereco_aluno}','{estado_aluno}')''') 
+                                
+        cursor.execute(comando_inserir) 
+        conexao.commit()
+        except ValueError:
+            print("erro de valor no cadastro tente novamente")
+        except TypeError:
+            print("erro de tipo de dados") 
+        NameError	
+        except IndexError:
+            print("erro de indice fora dos limites")	
+        except KeyError:
+            print("erro de chave")	
+        except AttributeError:
+            print("erro de objeto")	
+        except ZeroDivisionError:
+            print("erro de tentativa de dividir")
+        except FileNotFoundError:
+            print("erro de arquivo nao encontrado")	
+        except PermissionError:
+            print("erro de permissao para acessar arquivo")	
+        except ImportError:
+            print("erro de importacao de um modulo")
+        except ModuleNotFoundError:
+            print("erro de modulo nao encontrado")	
+        except RuntimeError:
+            print("erro generico em tempo de execucao")	
+        except OverflowError:
+            print("erro de numero execedido ao limite")	
+        except MemoryError:
+            print("erro de memoria insuficiente")
+        except KeyboardInterrupt:
+            print("erro de usuario, interrompeu o programa")	
+        except EOFError:
+            print("erro de fim inesperado")
+        except Exception:
+            print("Classe base da maioria dos erros.")	
+         finally:
+            conexao.close 
+
 
 def listar():
+    try:
+        conexao = sqlite3.connect ('escola.db') 
+        cursor = conexao.cursor() 
 
-    cursor.execute("SELECT * FROM alunos") 
-    todos_alunos = cursor.fetchall()
+        cursor.execute("SELECT * FROM alunos") 
+        todos_alunos = cursor.fetchall()
 
-    for aluno in alunos: 
-        print(f"ID: {aluno[0]}")
-        print(f"Nome: {aluno[1]}")
-        print(f"Telefone: {aluno[2]}")
-        print(f"Turma: {aluno[3]}")
-        print(f"Idade: {aluno[4]}")
-        print(f"CPF: {aluno[5]}")
-        print(f"salario: {aluno[6]}")
-        print(f"escola: {aluno[7]}")
-        print(f"cidade: {aluno[8]}")
-        print(f"endereco: {aluno[9]}")
-        print(f"estado: {aluno[10]}")
-        print("-" * 30)
+        for aluno in todos_alunos: 
+            print(f"ID: {aluno[0]}")
+            print(f"Nome: {aluno[1]}")
+            print(f"Telefone: {aluno[2]}")
+            print(f"Turma: {aluno[3]}")
+            print(f"Idade: {aluno[4]}")
+            print(f"CPF: {aluno[5]}")
+            print(f"cidade: {aluno[6]}")
+            print(f"endereco: {aluno[7]}")
+            print(f"estado: {aluno[8]}")
+            print("-" * 30)
 
 
 
 def alterar():
-    id_aluno = int(input("Qual é o teu ID: "))
+    try:
+        listar()
 
-    cursor.execute(f'''SELECT * FROM alunos WHERE id = {id_aluno}''')
-    alunos = cursor.fetchone()
+        conexao = sqlite3.connect ('escola.db') 
+        cursor = conexao.cursor() 
 
-    if not id_aluno:
-        print("Não encontrado!")
-    else:
-        novo_nome = input("qual o novo nome: ")
-        novo_telefone = input("qual o novo telefone: ")
-        novo_materia = input("qual a nova materia: ")
-        novo_idade = int(input("qual a nova idade: "))
-        novo_cpf = input("qual o novo cpf: ")
-        novo_salario = float(input("qual o novo salario: "))
-        novo_nome_de_escola = input("qual o novo nome: ")
-        novo_cidade = input("qual a nova cidade: ")
-        novo_endereco = input("qual o novo endereço: ")
-        novo_estado = input("qual o novo estado: ")
 
-        comando = f'''UPDATE alunos SET nome = '{novo_nome}',telefone = '{novo_telefone}',materia = '{novo_materia}',idade = {novo_idade},cpf = '{novo_cpf}',salario = '{novo_salario}',escola = '{novo_escola}','''
+        id_aluno = int(input("Qual é o teu ID: "))
         
-        conexao.commit()
-        print(" Dados alterados ")
+        cursor.execute(f'''SELECT * FROM alunos WHERE id = {id_aluno}''')
+        alunos = cursor.fetchone()
+
+        if not id_aluno:
+            print("Não encontrado!")
+        else:
+            novo_nome = input("qual o novo nome: ")
+            novo_telefone = input("qual o novo telefone: ")
+            novo_turma = input("qual a nova turma: ")
+            novo_idade = int(input("qual a nova idade: "))
+            novo_cpf = input("qual o novo cpf: ")
+            novo_cidade = input("qual a nova cidade: ")
+            novo_endereco = input("qual o novo endereço: ")
+            novo_estado = input("qual o novo estado: ")
+
+            comando = f'''UPDATE alunos SET nome = '{novo_nome}',telefone = '{novo_telefone}',materia = '{novo_turma}',idade = '{novo_idade}',cpf = '{novo_cpf}',escola = '{novo_cidade}',endereco = '{novo_endereco}',estado = '{novo_estado}','''
+            
+            conexao.commit()
+            print(" Dados alterados ")
+            except ValueError:
+                print("erro de valor no cadastro tente novamente") 
+             except TypeError:
+            print("erro de tipo de dados") 
+        NameError	
+        except IndexError:
+            print("erro de indice fora dos limites")	
+        except KeyError:
+            print("erro de chave")	
+        except AttributeError:
+            print("erro de objeto")	
+        except ZeroDivisionError:
+            print("erro de tentativa de dividir")
+        except FileNotFoundError:
+            print("erro de arquivo nao encontrado")	
+        except PermissionError:
+            print("erro de permissao para acessar arquivo")	
+        except ImportError:
+            print("erro de importacao de um modulo")
+        except ModuleNotFoundError:
+            print("erro de modulo nao encontrado")	
+        except RuntimeError:
+            print("erro generico em tempo de execucao")	
+        except OverflowError:
+            print("erro de numero execedido ao limite")	
+        except MemoryError:
+            print("erro de memoria insuficiente")
+        except KeyboardInterrupt:
+            print("erro de usuario, interrompeu o programa")	
+        except EOFError:
+            print("erro de fim inesperado")
+        except Exception:
+            print("Classe base da maioria dos erros.")	
+         finally:
+            conexao.close 
 
 
 def deletar():
+    try:
+        conexao = sqlite3.connect("escola_demonstracao.db")
+        cursor = conexao.cursor()
 
-    conexao = sqlite3.connect("escola_demonstracao.db")
-    cursor = conexao.cursor()
+        listar()
 
-    listar()
+        id_alunos = int(input(" Qual ID deseja deletar: " ))
 
-    id_alunos = int(input(" Qual ID deseja deletar: " ))
+        cursor.execute(f'''DELETE FROM alunos WHERE Id = {id_alunos}''')
 
-    cursor.execute(f'''DELETE FROM alunos WHERE Id = {id_alunos}''')
+        conexao.commit()
+        print("aluno deletado")
+        except ValueError:
+            print("erro de valor no deletar tente novamente")
+         except TypeError:
+            print("erro de tipo de dados") 
+        NameError	
+        except IndexError:
+            print("erro de indice fora dos limites")	
+        except KeyError:
+            print("erro de chave")	
+        except AttributeError:
+            print("erro de objeto")	
+        except ZeroDivisionError:
+            print("erro de tentativa de dividir")
+        except FileNotFoundError:
+            print("erro de arquivo nao encontrado")	
+        except PermissionError:
+            print("erro de permissao para acessar arquivo")	
+        except ImportError:
+            print("erro de importacao de um modulo")
+        except ModuleNotFoundError:
+            print("erro de modulo nao encontrado")	
+        except RuntimeError:
+            print("erro generico em tempo de execucao")	
+        except OverflowError:
+            print("erro de numero execedido ao limite")	
+        except MemoryError:
+            print("erro de memoria insuficiente")
+        except KeyboardInterrupt:
+            print("erro de usuario, interrompeu o programa")	
+        except EOFError:
+            print("erro de fim inesperado")
+        except Exception:
+            print("Classe base da maioria dos erros.")	
+        finally:
+            conexao.close 
 
-    conexao.commit()
-    print("aluno deletado")
-
-    conexao.close()
+        conexao.close()
 
 
 
 def menu():
+    try:
       
-    while True:
-        print("\n--- TABELA ALUNOS ---")
-        print("\n=== SISTEMA ESCOLAR ===")  
-        print("1. Cadastrar alunos") 
-        print("2. Listar alunos") 
-        print("3. Atualizar alunos") 
-        print("4. Excluir alunos") 
-        print("5. Sair")
-            
-        opcao = input("Escolha uma opção: ")
+        while True:
+            print("\n--- TABELA ALUNOS ---")
+            print("\n=== SISTEMA ESCOLAR ===")  
+            print("1. Cadastrar alunos") 
+            print("2. Listar alunos") 
+            print("3. Atualizar alunos") 
+            print("4. Excluir alunos") 
+            print("5. Sair")
+                
+            opcao = input("Escolha uma opção: ")
 
-        if opcao == '1': cadastrar()
-        elif opcao == '2': listar() 
-        elif opcao == '3': atualizar() 
-        elif opcao == '4': excluir() 
-        elif opcao == '5': break
-        else: print("Opção inválida!")
+            if opcao == '1': cadastrar()
+            elif opcao == '2': listar() 
+            elif opcao == '3': alterar() 
+            elif opcao == '4': deletar() 
+            elif opcao == '5': break
+            else: print("Opção inválida!")
 
-menu()
+            except ValueError:
+                print("erro de valor no cadastro tente novamente") 
+
+    menu()
+
 
 
     
