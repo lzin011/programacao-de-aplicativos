@@ -21,22 +21,24 @@ def cadastrar():
         telefone_aluno = input("TELEFONE: ") 
         turma_aluno = input("TURMA: ") 
         idade_aluno = int(input("IDADE: "))
-        CPF_aluno = input("CPF: ")  
-        cidade_aluno = input("CIDADE: ")  
-        endereco_aluno = input("ENDERECO: ") 
+        CPF_aluno = input("CPF: ")
+        cidade_aluno = input("CIDADE: ") 
+        endereco_aluno = input("ENDERECO: ")
         estado_aluno = input("ESTADO: ") 
-
+       
         comando_inserir = (f''' 
                             INSERT into alunos (nome, telefone, turma, idade, cpf, cidade, endereco, estado)
-                            VALUES('{nome_aluno}','{telefone_aluno}','{turma_aluno}','{idade_aluno}','{CPF_aluno}','{cidade_aluno}','{endereco_aluno}','{estado_aluno}')''') 
+                            VALUES('{nome_aluno}','{telefone_aluno}','{turma_aluno}','{idade_aluno}','{CPF_aluno}','{cidade_aluno}','{endereco_aluno}','{estado_aluno}',''') 
                                 
         cursor.execute(comando_inserir) 
         conexao.commit()
+
         except ValueError:
             print("erro de valor no cadastro tente novamente")
         except TypeError:
             print("erro de tipo de dados") 
-        NameError	
+        except NameError:
+            print("erro de valor no cadastro tente novamente")	
         except IndexError:
             print("erro de indice fora dos limites")	
         except KeyError:
@@ -65,7 +67,7 @@ def cadastrar():
             print("erro de fim inesperado")
         except Exception:
             print("Classe base da maioria dos erros.")	
-         finally:
+        finally:
             conexao.close 
 
 
@@ -112,49 +114,48 @@ def alterar():
             novo_turma = input("qual a nova turma: ")
             novo_idade = int(input("qual a nova idade: "))
             novo_cpf = input("qual o novo cpf: ")
-            novo_cidade = input("qual a nova cidade: ")
-            novo_endereco = input("qual o novo endereço: ")
-            novo_estado = input("qual o novo estado: ")
+           
 
-            comando = f'''UPDATE alunos SET nome = '{novo_nome}',telefone = '{novo_telefone}',materia = '{novo_turma}',idade = '{novo_idade}',cpf = '{novo_cpf}',escola = '{novo_cidade}',endereco = '{novo_endereco}',estado = '{novo_estado}','''
+            comando = f'''UPDATE alunos SET nome = '{novo_nome}',telefone = '{novo_telefone}',materia = '{novo_turma}',idade = '{novo_idade}',cpf = '{novo_cpf}','''
             
             conexao.commit()
-            print(" Dados alterados ")
+            
             except ValueError:
                 print("erro de valor no cadastro tente novamente") 
-             except TypeError:
-            print("erro de tipo de dados") 
-        NameError	
-        except IndexError:
-            print("erro de indice fora dos limites")	
-        except KeyError:
-            print("erro de chave")	
-        except AttributeError:
-            print("erro de objeto")	
-        except ZeroDivisionError:
-            print("erro de tentativa de dividir")
-        except FileNotFoundError:
-            print("erro de arquivo nao encontrado")	
-        except PermissionError:
-            print("erro de permissao para acessar arquivo")	
-        except ImportError:
-            print("erro de importacao de um modulo")
-        except ModuleNotFoundError:
-            print("erro de modulo nao encontrado")	
-        except RuntimeError:
-            print("erro generico em tempo de execucao")	
-        except OverflowError:
-            print("erro de numero execedido ao limite")	
-        except MemoryError:
-            print("erro de memoria insuficiente")
-        except KeyboardInterrupt:
-            print("erro de usuario, interrompeu o programa")	
-        except EOFError:
-            print("erro de fim inesperado")
-        except Exception:
-            print("Classe base da maioria dos erros.")	
-         finally:
-            conexao.close 
+            except TypeError:
+                print("erro de tipo de dados")
+            except NameError:
+                print("erro de valor no cadastro tente novamente")
+            except IndexError:
+                print("erro de indice fora dos limites")	
+            except KeyError:
+                print("erro de chave")	
+            except AttributeError:
+                print("erro de objeto")	
+            except ZeroDivisionError:
+                print("erro de tentativa de dividir")
+            except FileNotFoundError:
+                print("erro de arquivo nao encontrado")	
+            except PermissionError:
+                print("erro de permissao para acessar arquivo")	
+            except ImportError:
+                print("erro de importacao de um modulo")
+            except ModuleNotFoundError:
+                print("erro de modulo nao encontrado")	
+            except RuntimeError:
+                print("erro generico em tempo de execucao")	
+            except OverflowError:
+                print("erro de numero execedido ao limite")	
+            except MemoryError:
+                print("erro de memoria insuficiente")
+            except KeyboardInterrupt:
+                print("erro de usuario, interrompeu o programa")	
+            except EOFError:
+                print("erro de fim inesperado")
+            except Exception:
+                print("Classe base da maioria dos erros.")	
+            finally:
+                conexao.close 
 
 
 def deletar():
@@ -174,7 +175,8 @@ def deletar():
             print("erro de valor no deletar tente novamente")
          except TypeError:
             print("erro de tipo de dados") 
-        NameError	
+        except NameError:
+            print("erro de valor no cadastro tente novamente")	
         except IndexError:
             print("erro de indice fora dos limites")	
         except KeyError:
@@ -230,7 +232,7 @@ def menu():
             elif opcao == '4': deletar() 
             elif opcao == '5': break
             else: print("Opção inválida!")
-
+            
             except ValueError:
                 print("erro de valor no cadastro tente novamente") 
 
