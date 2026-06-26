@@ -33,41 +33,17 @@ def cadastrar():
         cursor.execute(comando_inserir) 
         conexao.commit()
 
-        except ValueError:
-            print("erro de valor no cadastro tente novamente")
-        except TypeError:
-            print("erro de tipo de dados") 
-        except NameError:
-            print("erro de valor no cadastro tente novamente")	
-        except IndexError:
-            print("erro de indice fora dos limites")	
-        except KeyError:
-            print("erro de chave")	
-        except AttributeError:
-            print("erro de objeto")	
-        except ZeroDivisionError:
-            print("erro de tentativa de dividir")
-        except FileNotFoundError:
-            print("erro de arquivo nao encontrado")	
-        except PermissionError:
-            print("erro de permissao para acessar arquivo")	
-        except ImportError:
-            print("erro de importacao de um modulo")
-        except ModuleNotFoundError:
-            print("erro de modulo nao encontrado")	
-        except RuntimeError:
-            print("erro generico em tempo de execucao")	
-        except OverflowError:
-            print("erro de numero execedido ao limite")	
-        except MemoryError:
-            print("erro de memoria insuficiente")
-        except KeyboardInterrupt:
-            print("erro de usuario, interrompeu o programa")	
-        except EOFError:
-            print("erro de fim inesperado")
-        except Exception:
-            print("Classe base da maioria dos erros.")	
-        finally:
+    except ValueError:
+        print("valor invalido")
+    except TypeError:
+        print("tipo de dado invalido") 
+    except ZeroDivisionError:
+        print("arquivo não encontrado")
+    except FileNotFoundError:
+        print("divisão por zero")	
+    except Exception as erro:
+        print(f"ocorreu um erro: {erro}")	
+    finally:
             conexao.close 
 
 
@@ -90,6 +66,18 @@ def listar():
             print(f"endereco: {aluno[7]}")
             print(f"estado: {aluno[8]}")
             print("-" * 30)
+    except ValueError:
+        print("valor invalido")
+    except TypeError:
+        print("tipo de dado invalido") 
+    except ZeroDivisionError:
+        print("arquivo não encontrado")
+    except FileNotFoundError:
+        print("divisão por zero")	
+    except Exception as erro:
+        print(f"ocorreu um erro: {erro}")	
+    finally:
+        print("codigo encerrado")
 
 
 
@@ -120,42 +108,19 @@ def alterar():
             
             conexao.commit()
             
-            except ValueError:
-                print("erro de valor no cadastro tente novamente") 
-            except TypeError:
-                print("erro de tipo de dados")
-            except NameError:
-                print("erro de valor no cadastro tente novamente")
-            except IndexError:
-                print("erro de indice fora dos limites")	
-            except KeyError:
-                print("erro de chave")	
-            except AttributeError:
-                print("erro de objeto")	
-            except ZeroDivisionError:
-                print("erro de tentativa de dividir")
-            except FileNotFoundError:
-                print("erro de arquivo nao encontrado")	
-            except PermissionError:
-                print("erro de permissao para acessar arquivo")	
-            except ImportError:
-                print("erro de importacao de um modulo")
-            except ModuleNotFoundError:
-                print("erro de modulo nao encontrado")	
-            except RuntimeError:
-                print("erro generico em tempo de execucao")	
-            except OverflowError:
-                print("erro de numero execedido ao limite")	
-            except MemoryError:
-                print("erro de memoria insuficiente")
-            except KeyboardInterrupt:
-                print("erro de usuario, interrompeu o programa")	
-            except EOFError:
-                print("erro de fim inesperado")
-            except Exception:
-                print("Classe base da maioria dos erros.")	
-            finally:
-                conexao.close 
+    except ValueError:
+        print("valor invalido")
+    except TypeError:
+        print("tipo de dado invalido") 
+    except ZeroDivisionError:
+        print("arquivo não encontrado")
+    except FileNotFoundError:
+        print("divisão por zero")	
+    except Exception as erro:
+        print(f"ocorreu um erro: {erro}")	
+    finally:
+        print("codigo encerrado")
+        conexao.close 
 
 
 def deletar():
@@ -171,44 +136,21 @@ def deletar():
 
         conexao.commit()
         print("aluno deletado")
-        except ValueError:
-            print("erro de valor no deletar tente novamente")
-         except TypeError:
-            print("erro de tipo de dados") 
-        except NameError:
-            print("erro de valor no cadastro tente novamente")	
-        except IndexError:
-            print("erro de indice fora dos limites")	
-        except KeyError:
-            print("erro de chave")	
-        except AttributeError:
-            print("erro de objeto")	
-        except ZeroDivisionError:
-            print("erro de tentativa de dividir")
-        except FileNotFoundError:
-            print("erro de arquivo nao encontrado")	
-        except PermissionError:
-            print("erro de permissao para acessar arquivo")	
-        except ImportError:
-            print("erro de importacao de um modulo")
-        except ModuleNotFoundError:
-            print("erro de modulo nao encontrado")	
-        except RuntimeError:
-            print("erro generico em tempo de execucao")	
-        except OverflowError:
-            print("erro de numero execedido ao limite")	
-        except MemoryError:
-            print("erro de memoria insuficiente")
-        except KeyboardInterrupt:
-            print("erro de usuario, interrompeu o programa")	
-        except EOFError:
-            print("erro de fim inesperado")
-        except Exception:
-            print("Classe base da maioria dos erros.")	
-        finally:
-            conexao.close 
+    except ValueError:
+        print("valor invalido")
+    except TypeError:
+        print("tipo de dado invalido") 
+    except ZeroDivisionError:
+        print("arquivo não encontrado")
+    except FileNotFoundError:
+        print("divisão por zero")	
+    except Exception as erro:
+        print(f"ocorreu um erro: {erro}")	
+    finally:
+        print("codigo encerrado")
+        conexao.close 
 
-        conexao.close()
+       
 
 
 
@@ -233,10 +175,20 @@ def menu():
             elif opcao == '5': break
             else: print("Opção inválida!")
             
-            except ValueError:
-                print("erro de valor no cadastro tente novamente") 
+    except ValueError:
+        print("valor invalido")
+    except TypeError:
+        print("tipo de dado invalido") 
+    except ZeroDivisionError:
+        print("arquivo não encontrado")
+    except FileNotFoundError:
+        print("divisão por zero")	
+    except Exception as erro:
+        print(f"ocorreu um erro: {erro}")	
+    finally:
+        print("codigo encerrado")
 
-    menu()
+menu()
 
 
 
