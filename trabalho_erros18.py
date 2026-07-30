@@ -11,6 +11,7 @@ def cadastrar_lista_aluno():
 
     #o comando executemany quebra com a mensagem: "function takes exactly 2 arguments"
     #como passar a lista de dados da forma correta dentro dele?
+    # troquei o execute por excutemany. Porque eu desejo executar a mesmo instrução SQL varias vezes.
 
     cursor.executemany("INSERT INTO alunos (nome, id_turma) VALUES (?, ?)", lista)
 
