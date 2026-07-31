@@ -12,4 +12,4 @@ def cadstrar_professores(nome, cpf):
         CREATE TABLE IF NOT EXISTS professores (
             id INTENGER PRIMARY KEY AUTOINCREMENT,
             nome TEXT,
-            cpf )''')
+            cpf UNIQUE )''')

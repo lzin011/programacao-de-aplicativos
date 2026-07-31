@@ -1,7 +1,7 @@
 import sqlite3
 
 def cadastrar_serie_seguro(nome, id_escola):
-    conexao = none
+    conexao = None
     try:
         # se a linha abaixo falhar por falta d epermissao na pasta,
         # o bloco finally vai tentar fechar algo que nao abriu. como corrigir?
@@ -13,5 +13,5 @@ def cadastrar_serie_seguro(nome, id_escola):
     except sqlite3.Error as e:
         print("Error tecnico:", e)
     finally:
-        if conexao is not none:
+        if conexao:
             conexao.close()

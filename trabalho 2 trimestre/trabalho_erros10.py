@@ -9,7 +9,7 @@ def deletar_escola_antiga():
     # O código original está errado porque id_escola é interpretado como nome de uma coluna. A forma correta usa ? para excluir apenas a escola com o ID informado pelo usuário.
     
     cursor.execute(
-        "DELETE FROM escola WHERE id = ?",
+        "DELETE * FROM escola WHERE id = ?",
         (id_escola,)
     )
 

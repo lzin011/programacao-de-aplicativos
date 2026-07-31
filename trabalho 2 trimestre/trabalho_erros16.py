@@ -11,4 +11,4 @@ def menu():
             break
             # por que o programa continua rodando e mostrando o menu mesmo digitando 2?
             # O pass não faz nada. Ele apenas serve como um espaço reservado. O while continua executando e o menu aparece novamente.
-            pass
+            

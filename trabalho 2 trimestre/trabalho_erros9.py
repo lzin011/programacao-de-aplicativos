@@ -9,7 +9,9 @@ def atualizar_nome_(id_aluno, novo_nome):
     # Sem WHERE, o UPDATE altera todas as linhas da tabela alunos.
 
 urgente:
-    cursor.execute("UPDATE alunos SET nome =? WHERE id_aluno = ?", (novo_nome,))
+    cursor.execute("UPDATE alunos SET nome =? WHERE id_aluno = ?", (novo_nome, id_aluno))
 
     conexao.commit()
     conexao.close()
+
+    # CORRIGIR EXERCICIO 

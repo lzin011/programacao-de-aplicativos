@@ -4,9 +4,10 @@ import sqlite3
 # por que isso quebra o sistema quando o sistema quando usamos multiplos arquivos (módulos)?
 # esta tudo fora das DEF.
 
-conexao = sqlite3.connect('sistema_escola.db')
-cursor = conexao.cursor()
-
 def inserir_escola(nome):
+    conexao = sqlite3.connect('sistema_escola.db')
+    cursor = conexao.cursor()
     cursor.execute("INSERT INTO escolas (nome) VALUES (?)", (nome,))
     conexao.commit()
+
+    # CORRIGIR CODIGO
