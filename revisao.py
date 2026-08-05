@@ -52,7 +52,8 @@ def inserir():
             print("Erro: Hospital não existe.")
     except sqlite3.Error as erro:
         print("Erro:", erro)
-
     finally:
         conexao.close()
+
+
 

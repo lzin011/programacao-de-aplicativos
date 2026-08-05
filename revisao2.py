@@ -1,41 +1,46 @@
 import sqlite3
+def criar():
 
-try:
-    conexao = sqlite3.connect("cinema.db")
-    cursor = conexao.cursor()
+    try:
+        conexao = sqlite3.connect("cinema.db")
+        cursor = conexao.cursor()
 
-    cursor.execute("PRAGMA foreign_keys = ON")
+        cursor.execute("PRAGMA foreign_keys = ON")
 
-    
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS cinemas(
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nome_cinema TEXT,
-        shopping TEXT
-    )
-    """)
+        
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS cinemas(
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            nome_cinema TEXT,
+            shopping TEXT
+        )
+        """)
 
-    
-    cursor.execute('''
-    CREATE TABLE IF NOT EXISTS salas(
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        numero_sala INTEGER,
-        capacidade INTEGER,
-        id_cinema INTEGER,
-        FOREIGN KEY(id_cinema) REFERENCES cinemas(id)
-    )
-    ''') 
+        
+        cursor.execute('''
+        CREATE TABLE IF NOT EXISTS salas(
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            numero_sala INTEGER,
+            capacidade INTEGER,
+            id_cinema INTEGER,
+            FOREIGN KEY(id_cinema) REFERENCES cinemas(id)
+        )
+        ''') 
 
-    nome = input("Nome do cinema: ")
-    shopping = input("Shopping: ")
+        nome = input("Nome do cinema: ")
+        shopping = input("Shopping: ")
 
-    cursor.execute(
-        "INSERT INTO cinemas(nome_cinema, shopping) VALUES (?, ?)",
-        (nome, shopping)
-    )
-    conexao.commit()
+        cursor.execute(
+            "INSERT INTO cinemas(nome_cinema, shopping) VALUES (?, ?)",
+            (nome, shopping)
+        )
+        conexao.commit()
 
-      try:
+    except sqlite3.Error as erro:
+        print("Erro:", erro)
+
+def cadastrar():
+    try:
         numero = int(input("Número da sala: "))
         capacidade = int(input("Capacidade: "))
         id_cinema = int(input("ID do cinema: "))
@@ -51,22 +56,19 @@ try:
             conexao.commit()
             print("Sala cadastrada!")
 
+            cursor.execute("SELECT * FROM salas")
+            salas = cursor.fetchall()
+
+            for sala in salas:
+                print(sala)
         else:
             print("Cinema não encontrado.")
 
     except ValueError:
         print("Digite apenas números nos campos numéricos.")
 
+    except sqlite3.Error as erro:
+        print("Erro:", erro)
 
-    print("\nsalas cadastradas: ")
-    cursor.execute("SELECT * FROM salas")
-    salas = cursor.fetchall()
-
-    for sala in salas:
-        print(sala)
-
-except sqlite3.Error as erro:
-    print("Erro:", erro)
-
-finally:
-    conexao.close()
+    finally:
+        conexao.close()
