@@ -15,7 +15,7 @@ def criar():
             shopping TEXT
         )
         """)
-
+        
         
         cursor.execute('''
         CREATE TABLE IF NOT EXISTS salas(
