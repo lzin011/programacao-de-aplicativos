@@ -46,7 +46,7 @@ def criar2():
         numero = input("Numero do hotel: ")
         preco_diaria = input("Preço da diaria: ")
 
-         cursor.execute(
+        cursor.execute(
             "INSERT INTO nome(numero, preco_diaria) VALUES (?, ?)",
             (numero, preco_diaria, )
         )
@@ -77,8 +77,8 @@ def cadastrar():
             for hotel in hoteis:
                 print(hotel)
 
-                else:
-            print("hotel não encontrado: ")
+            else:
+                print("hotel não encontrado: ")
 
     except ValueError:
         print("Digite apenas números nos campos numéricos.")
@@ -89,6 +89,33 @@ def cadastrar():
     finally:
         conexao.close()
 
+    
+def menu_interativo():
+    try:
+        while True:    
+            print("\n===== MENU HOTELARIA =====")
+            print("1 - Cadastrar hotel")
+            print("2 - Cadastrar quarto")
+            print("3 - Sair")
+
+            opcao = input("Escolha uma opção: ")
+
+            if opcao == "1":
+                criar()
+
+            elif opcao == "2":
+                cadastrar()
+
+            elif opcao == "3":
+                print("Programa encerrado.")
+                break
+
+            else:
+                print("Opção inválida. Tente novamente.")
+
+
+    except sqlite3.Error as erro:
+        print("Erro:", erro)
 
 
 
