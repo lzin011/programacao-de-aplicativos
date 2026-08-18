@@ -3,7 +3,7 @@ import sqlite3
 def conectar_banco():
     try:
         conexao = sqlite3.connect("lavanderia.db")
-        conexao.execute("PRAGMA foreign_keys = ON") #serve para conectar o programa ao banco de dados lavanderia.db, ela também ativa as chaves estrangeiras e retorna a conexão.
+        conexao.execute("PRAGMA foreign_keys = ON") 
         return conexao
     except Exception as erro:
         print("Erro:", erro)
@@ -25,7 +25,7 @@ def criar_tabelas():
                 id_franquia INTEGER,
                 FOREIGN KEY (id_franquia) REFERENCES franquias_lavanderia(id)
             )
-        """)                     #cria as tabelas franquias_lavanderia e unidades_operacionais, ela também estabelece a relação entre as duas tabelas.
+        """)                     
         conexao.commit()
         conexao.close()
     except Exception as erro:
@@ -38,7 +38,7 @@ def cadastrar_franquia():
         nome_comercial = input("Nome comercial: ")
         site = input("Site: ")
         conexao.execute(
-            "INSERT INTO franquias_lavanderia (nome_comercial, site) VALUES (?, ?)", #permite cadastrar uma nova franquia, o usuário informa o nome_comercial e o site, e essas informações são salvas no banco de dados.
+            "INSERT INTO franquias_lavanderia (nome_comercial, site) VALUES (?, ?)",
             (nome_comercial, site)
         )
         conexao.commit()
@@ -58,7 +58,7 @@ def cadastrar_unidade():
             "SELECT id FROM franquias_lavanderia WHERE id = ?",
             (id_franquia,)
         ).fetchone()
-                           # cadastra uma nova unidade da lavanderia, antes de cadastrar, ela verifica se a franquia informada realmente existe.
+                           
         if franquia is None:
             print("Franquia não existe!")
             conexao.close()
@@ -80,8 +80,7 @@ def listar_unidades():
         conexao = conectar_banco()
         unidades = conexao.execute(
             "SELECT * FROM unidades_operacionais"
-        ).fetchall()                                     #Essa função consulta o banco de dados e mostra na tela todas as unidades que estão cadastradas.
-
+        ).fetchall()                              
         for unidade in unidades:
             print(unidade)
 
@@ -99,7 +98,7 @@ def atualizar_unidade():
 
         franquia = conexao.execute(
             "SELECT id FROM franquias_lavanderia WHERE id = ?",  
-                                                          #Essa função permite alterar os dados de uma unidade já cadastrada. O usuário informa o ID da unidade e os novos dados.
+                                                
             (id_franquia,)
         ).fetchone()
 
@@ -126,7 +125,7 @@ def excluir_unidade():
 
         conexao.execute(
             "DELETE FROM unidades_operacionais WHERE id = ?", 
-                                          #Essa função permite excluir uma unidade do banco de dados. Para isso, o usuário informa o ID da unidade que deseja apagar.
+                                          
             (id_unidade,)
         )
         conexao.commit()
@@ -141,7 +140,7 @@ def menu():
         criar_tabelas()
 
         while True:
-            print("\n===== LAVANDERIA INDUSTRIAL =====") #é responsável por mostrar as opções do programa e chamar a função correspondente à escolha do usuário. Ela também permite continuar usando o sistema até escolher a opção de sair.
+            print("\n===== LAVANDERIA INDUSTRIAL =====") 
             print("1 - Cadastrar franquia")
             print("2 - Listar franquias")
             print("3 - Atualizar franquia")
