@@ -30,17 +30,50 @@ def calcular_desconto(preco, percentual):
     preco = float(preco)
     percentual = float(percentual)
 
-    return preco - (preco * percentual / 100)
+    return round(preco - (preco * percentual / 100), 2)
 
-
-assert calcular_desconto(100, 0) == 100      
+assert calcular_desconto(100, 0.0) == 100      
 assert calcular_desconto(100, 10.0) == 90     
 assert calcular_desconto(100, 50.0) == 50       
 assert calcular_desconto(100, 100.0) == 0       
 assert calcular_desconto(99.90, 10.0) == 89.91
 
-def verificar_acesso(idade, acompanhado):
-    if idade >= 18 or acompanhado 
+def teste_pode_entrar():
+    if pode_entrar(20, False) == True:
+        print("Teste 1 passou")
+
+    if pode_entrar(17, True) == True:
+        print("Teste 2 passou")
+
+    if pode_entrar(17, False) == False:
+        print("Teste 3 passou")
+
+    if pode_entrar(18, False) == True:
+        print("Teste 4 passou")
+
+    if pode_entrar(17, True) == True:
+        print("Teste 5 passou")
+
+#---------------------------------------------
+
+def teste_calcular_frete():
+    if calcular_frete(50) == 20:
+        print("Teste 1 passou")
+
+    if calcular_frete(100) == 10:
+        print("Teste 2 passou")
+
+    if calcular_frete(150) == 10:
+        print("Teste 3 passou")
+
+    if calcular_frete(200) == 0:
+        print("Teste 4 passou")
+
+    if calcular_frete(250) == 0:
+        print("Teste 5 passou")
+
+
+
 
 
 
