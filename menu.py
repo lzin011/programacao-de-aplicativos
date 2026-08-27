@@ -1,5 +1,30 @@
 import sqlite3
 
+def criar_cliente():
+    print("Função criar cliente")
+
+def alterar_cliente():
+    print("Função alterar cliente")
+
+def listar_cliente():
+    print("Função listar clientes")
+
+def excluir_cliente():
+    print("Função excluir cliente")
+
+def criar_produto():
+    print("Função criar produto")
+
+def alterar_produto():
+    print("Função alterar produto")
+
+def listar_produto():
+    print("Função listar produtos")
+
+def excluir_produto():
+    print("Função excluir produto")
+
+
 def Menu():
     while True:
         print("\n===== MENU =====")
@@ -16,16 +41,16 @@ def Menu():
         opcao = input("Escolha uma opção: ")
 
         if opcao == "1":
-            criar()
+            criar_cliente()
 
         elif opcao == "2":
-            alterar()
+            alterar_cliente()
 
         elif opcao == "3":
-            listar()
+            listar_cliente()
 
         elif opcao == "4":
-            excluir()
+            excluir_cliente()
 
         elif opcao == "5":
             criar_produto()
