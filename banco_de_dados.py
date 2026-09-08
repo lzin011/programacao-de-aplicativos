@@ -1,4 +1,5 @@
 import sqlite3
+from banco import conectar 
 
 def conectar():
     banco = sqlite3.connect("gestao_escolar.db")
