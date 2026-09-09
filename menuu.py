@@ -1,8 +1,4 @@
-import banco
-import escola
-import turma
-import aluno
-
+from banco import conectar
 
 banco.criar_tabelas()
 
